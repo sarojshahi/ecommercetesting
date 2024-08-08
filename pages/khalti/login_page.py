@@ -2,7 +2,7 @@
 from selenium.webdriver.common.by import By
 
 #DEFINE CLASS FOR LOGIN PAGE OF KHALTI
-class LoginPage:
+class LoginPageKhalti:
     def __init__(self,driver):
         self.driver = driver
         self.userid_field = By.XPATH,"//input[@name='id']"

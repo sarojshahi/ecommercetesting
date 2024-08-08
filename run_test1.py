@@ -6,9 +6,13 @@ import pytest
 import time
 
 #IMPORT THE CLASSES FROM THE PAGES
-from pages.olizstore.login_page import LoginPage
-from pages.olizstore.registration_page import RegistrationPage
-from pages.khalti.registration_page import RegistrationPage
+from pages.olizstore.registration_page import RegistrationPageOliz
+from pages.olizstore.login_page import LoginPageOliz
+from pages.khalti.registration_page import RegistrationPageKhalti
+from pages.khalti.login_page import LoginPageKhalti
+from pages.hamrobazar.registration_page import RegistrationPageHB
+from pages.hamrobazar.login_page import LoginPageHB
+
 
 @pytest.fixture()
 def driver():
@@ -28,7 +32,7 @@ def driver():
 
 #RUNNING TEST FUNCTION ON OLIZ LOGIN PAGE
 def test_login_oliz(driver, useremail,userpassword):
-    oliz_login = LoginPage(driver)
+    oliz_login = LoginPageOliz(driver)
     oliz_login.open_page('https://www.olizstore.com/customer/account/login/')
     driver.maximize_window()
     time.sleep(2)
@@ -42,7 +46,7 @@ def test_login_oliz(driver, useremail,userpassword):
 
 #RUNNING TEST FUNCTION ON OLIZ REGISTRATION PAGE
 def test_registration_oliz(driver):
-    oliz_registration = RegistrationPage(driver)
+    oliz_registration = RegistrationPageOliz(driver)
     oliz_registration.open_page("https://www.olizstore.com/customer/account/create/")
     driver.maximize_window()
     time.sleep(2)
@@ -64,7 +68,7 @@ def test_registration_oliz(driver):
 
 #RUNNING TEST FUNCTION ON KHALTI REGISTRATION PAGE
 def test_registration_khalti(driver):
-    khalti_registration = RegistrationPage(driver)
+    khalti_registration = RegistrationPageKhalti(driver)
     khalti_registration.open_page("https://web.khalti.com/?csrt=5394820902130000854#/join")
     driver.maximize_window()
     time.sleep(1)
@@ -85,9 +89,9 @@ def test_registration_khalti(driver):
     khalti_registration.click_join()
     time.sleep(5)
 
-
+#RUNNING TEST FUNCTION ON KHALTI REGISTRATION PAGE
 def test_login_khalti(driver):
-    khalti_login = LoginPage(driver)
+    khalti_login = LoginPageKhalti(driver)
     khalti_login.open_page("https://web.khalti.com/?csrt=5394820902130000854#/")
     driver.maximize_window()
     time.sleep(1)
@@ -98,5 +102,33 @@ def test_login_khalti(driver):
     khalti_login.click_login()
     time.sleep(3)
 
+#####################################################################
 
+#RUNNING TEST FUNCTION ON HAMROBAZAR REGISTRATION PAGE
+def test_registration_hamrobazar(driver):
+    hamrobazar_registration = RegistrationPageHB(driver)
+    hamrobazar_registration.open_page("https://hamrobazaar.com/signup")
+    driver.maximize_window()
+    time.sleep(1)
+    hamrobazar_registration.enter_fullname("John Doe")
+    time.sleep(1)
+    hamrobazar_registration.enter_phone("9800011111")
+    time.sleep(1)
+    hamrobazar_registration.enter_password("Tumblr@123")
+    time.sleep(1)
+    hamrobazar_registration.click_accept()
+    time.sleep(1)
+    hamrobazar_registration.click_signup()
+    time.sleep(1)
 
+def test_login_hamrobazar(driver):
+    hamrobazar_login = LoginPageHB(driver)
+    hamrobazar_login.open_page("https://hamrobazaar.com/login")
+    driver.maximize_window()
+    time.sleep(1)
+    hamrobazar_login.enter_phonenumber("0182312314")
+    time.sleep(1)
+    hamrobazar_login.enter_password("tundfdsnf")
+    time.sleep(1)
+    hamrobazar_login.click_login()
+    time.sleep(3)

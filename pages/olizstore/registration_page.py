@@ -2,7 +2,7 @@
 from selenium.webdriver.common.by import By
 
 #DEFINE CLASS AS Registration FOR REGISTRATION PAGE
-class RegistrationPage:
+class RegistrationPageOliz:
     def __init__(self,driver):
         self.driver = driver
         self.firstname_field = By.XPATH,"//input[@id='firstname']"

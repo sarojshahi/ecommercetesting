@@ -2,7 +2,7 @@
 from selenium.webdriver.common.by import By
 
 #DEFINE CLASS FOR REGISTRATION PAGE OF KHALTI PAGE
-class RegistrationPage:
+class RegistrationPageKhalti:
     def __init__(self,driver):
         self.driver = driver
         self.fullname_field = By.XPATH,"//input[@name='name']"

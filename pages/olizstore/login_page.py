@@ -2,7 +2,7 @@
 from selenium.webdriver.common.by import By
 
 #DEFINE CLASS AS Login FOR THE LOGIN PAGE
-class LoginPage:
+class LoginPageOliz:
     def __init__(self,driver):
         self.driver = driver
         self.user_id_field = By.XPATH,"//input[@id='email']"
