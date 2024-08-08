@@ -1,6 +1,5 @@
 #IMPORT ALL THE NECESSARY MODULES
 from selenium.webdriver.common.by import By
-import time
 
 #DEFINE CLASS AS Login FOR THE LOGIN PAGE
 class LoginPage:
