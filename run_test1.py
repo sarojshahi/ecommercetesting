@@ -24,6 +24,7 @@ def driver():
     #CLOSE THE DRIVER INSTANCE
     driver.quit()
 
+#TESTING DIFFERENT LOGIN CREDENTIALS USING PARAMETERIZATION
 @pytest.mark.parametrize("useremail,userpassword",[
     ("andromedanp.hq@gmail.com","Tumblr@123"),
     ("ram@gmail.com","abc123"),
@@ -89,15 +90,22 @@ def test_registration_khalti(driver):
     khalti_registration.click_join()
     time.sleep(5)
 
+#Testing the different login credentials using Parameterization
+@pytest.mark.parametrize("useremail,userpassword",[
+    ("andromedanp.hq@gmail.com","Tumblr@123"),
+    ("ram@gmail.com","abc123"),
+    ("9810110101","helloworld101")
+])
+
 #RUNNING TEST FUNCTION ON KHALTI REGISTRATION PAGE
-def test_login_khalti(driver):
+def test_login_khalti(driver,useremail,userpassword):
     khalti_login = LoginPageKhalti(driver)
     khalti_login.open_page("https://web.khalti.com/?csrt=5394820902130000854#/")
     driver.maximize_window()
     time.sleep(1)
-    khalti_login.enter_userid("ram@gmail.com")
+    khalti_login.enter_userid(useremail)
     time.sleep(1)
-    khalti_login.enter_user_password("tumblr@123")
+    khalti_login.enter_password(userpassword)
     time.sleep(1)
     khalti_login.click_login()
     time.sleep(3)
@@ -121,14 +129,21 @@ def test_registration_hamrobazar(driver):
     hamrobazar_registration.click_signup()
     time.sleep(1)
 
-def test_login_hamrobazar(driver):
+#Testing the different login credentials using Parameterization
+@pytest.mark.parametrize("userid,userpassword",[
+    ("918138213","Tumblr@123"),
+    ("testuser@gmail.com","Test@password123"),
+    ("9810110101","a"),
+    ("a","Test@passowrd123")
+])
+def test_login_hamrobazar(driver, userid,userpassword):
     hamrobazar_login = LoginPageHB(driver)
     hamrobazar_login.open_page("https://hamrobazaar.com/login")
     driver.maximize_window()
     time.sleep(1)
-    hamrobazar_login.enter_phonenumber("0182312314")
+    hamrobazar_login.enter_phonenumber(userid)
     time.sleep(1)
-    hamrobazar_login.enter_password("tundfdsnf")
+    hamrobazar_login.enter_password(userpassword)
     time.sleep(1)
     hamrobazar_login.click_login()
     time.sleep(3)
