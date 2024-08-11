@@ -1,5 +1,6 @@
 #IMPORT ALL THE NECESSARY MODULES
 from selenium.webdriver.common.by import By
+import re
 
 #DEFINE CLASS FOR REGISTRATION PAGE OF KHALTI PAGE
 class RegistrationPageKhalti:
@@ -41,3 +42,10 @@ class RegistrationPageKhalti:
 
     def click_join(self):
         self.driver.find_element(*self.join_button).click()
+
+    def is_valid_email(self, email):
+        # check the format using Regular Expression(re)
+        email_regex = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+        return re.match(email_regex, email) is not None
+    def is_valid_phone(self, phone):
+        return bool(re.match(r'^\d{10}$', phone))
