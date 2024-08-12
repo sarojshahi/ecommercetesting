@@ -8,8 +8,8 @@ import time
 #IMPORT THE CLASSES FROM THE PAGES
 from pages.olizstore.registration_page import RegistrationPageOliz
 from pages.olizstore.login_page import LoginPageOliz
-from pages.khalti.registration_page import RegistrationPageKhalti
-from pages.khalti.login_page import LoginPageKhalti
+from pages.socheko.registration_page import RegistrationPageSocheko
+from pages.socheko.login_page import LoginPageSocheko
 from pages.hamrobazar.registration_page import RegistrationPageHB
 from pages.hamrobazar.login_page import LoginPageHB
 
@@ -68,29 +68,22 @@ def test_registration_oliz(driver):
 ####################################################################
 
 #RUNNING TEST FUNCTION ON KHALTI REGISTRATION PAGE
-def test_registration_khalti(driver):
-    khalti_registration = RegistrationPageKhalti(driver)
-    khalti_registration.open_page("https://web.khalti.com/?csrt=5394820902130000854#/join")
+def test_registration_socheko(driver):
+    email = "ram@gmail.com"
+    socheko_registration = RegistrationPageSocheko(driver)
+    socheko_registration.open_page("http://www.socheko.com/signup-user")
     driver.maximize_window()
     time.sleep(1)
-    khalti_registration.enter_fullname("Ram Nepali")
+    socheko_registration.enter_email(email)
     time.sleep(1)
-    khalti_registration.enter_mobile("9")
+    socheko_registration.enter_name("Ram Nepali")
     time.sleep(1)
-    khalti_registration.enter_email("ram@gmail.com")
+    socheko_registration.enter_password("Nepali@123")
     time.sleep(1)
-    khalti_registration.enter_dob("1990/01/01")
+    socheko_registration.enter_confirm_password("Nepali@123")
     time.sleep(1)
-    khalti_registration.enter_gender()
-    time.sleep(1)
-    khalti_registration.enter_password("dummy123")
-    time.sleep(1)
-    khalti_registration.enter_confirm_password("dummy123")
-    time.sleep(1)
-    khalti_registration.click_join()
-    time.sleep(5)
 
-#Testing the different login credentials using Parameterization
+#Testing the different login credentials using Parameterization of Shocheko Page
 @pytest.mark.parametrize("useremail,userpassword",[
     ("andromedanp.hq@gmail.com","Tumblr@123"),
     ("ram@gmail.com","abc123"),

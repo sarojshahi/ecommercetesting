@@ -1,8 +1,9 @@
 #IMPORT ALL THE NECESSARY MODULES
 from selenium.webdriver.common.by import By
 
-#DEFINE CLASS FOR LOGIN PAGE OF KHALTI
-class LoginPageKhalti:
+#DEFINE CLASS FOR LOGIN PAGE OF SOCHEKO
+
+class LoginPageSocheko:
     def __init__(self,driver):
         self.driver = driver
         self.userid_field = By.XPATH,"//input[@name='id']"
