@@ -1,5 +1,6 @@
 #IMPORT ALL THE NECESSARY MODULES
 from selenium.webdriver.common.by import By
+import re
 
 #DEFINE CLASS FOR REGISTRATION PAGE OF HAMROBAZAR
 class RegistrationPageHB:
@@ -28,3 +29,5 @@ class RegistrationPageHB:
     def click_signup(self):
         self.driver.find_element(*self.sign_up_button).click()
 
+    def is_valid_phone(self, phone):
+        return bool(re.match(r'^\d{10}$', phone))
