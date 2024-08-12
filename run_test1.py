@@ -8,8 +8,8 @@ import time
 #IMPORT THE CLASSES FROM THE PAGES
 from pages.olizstore.registration_page import RegistrationPageOliz
 from pages.olizstore.login_page import LoginPageOliz
-from pages.khalti.registration_page import RegistrationPageKhalti
-from pages.khalti.login_page import LoginPageKhalti
+from pages.socheko.registration_page import RegistrationPageSocheko
+from pages.socheko.login_page import LoginPageSocheko
 from pages.hamrobazar.registration_page import RegistrationPageHB
 from pages.hamrobazar.login_page import LoginPageHB
 
@@ -76,42 +76,29 @@ def test_login_oliz(driver, useremail,userpassword):
 
 ####################################################################
 
-#RUNNING TEST FUNCTION ON KHALTI REGISTRATION PAGE
-def test_registration_khalti(driver):
-    mobilenum = "923123212"
-    email = "ram@@gmail.com"
-    khalti_registration = RegistrationPageKhalti(driver)
-    khalti_registration.open_page("https://web.khalti.com/?csrt=5394820902130000854#/join")
+#RUNNING TEST FUNCTION ON SOCHEKO REGISTRATION PAGE
+def test_registration_socheko(driver):
+    email = ""
+    socheko_registration = RegistrationPageSocheko(driver)
+    socheko_registration.open_page("http://www.socheko.com/signup-user")
     driver.maximize_window()
     time.sleep(1)
+    socheko_registration.enter_email(email)
     time.sleep(1)
-    khalti_registration.enter_mobile(mobilenum)
-    khalti_registration.enter_fullname("Ram Nepali")
+    socheko_registration.enter_name("John Doe")
     time.sleep(1)
-    khalti_registration.enter_email(email)
+    socheko_registration.enter_password("Nepali@123")
     time.sleep(1)
-    khalti_registration.enter_dob("1990/01/01")
+    socheko_registration.enter_confirm_password("Nepali@123")
     time.sleep(1)
-    khalti_registration.enter_gender()
+    socheko_registration.click_register()
     time.sleep(1)
-    khalti_registration.enter_password("dummy123")
-    time.sleep(1)
-    khalti_registration.enter_confirm_password("dummy123")
-    time.sleep(1)
-    # khalti_registration.click_join()
-    # time.sleep(5)
 
     # check the validity of the email
-    if khalti_registration.is_valid_email(email):
+    if socheko_registration.is_valid_email(email):
         print(f"The given email: {email} is valid")
     else:
         print(f"The given email: {email} is invalid")
-
-    # check the validity of the phone
-    if khalti_registration.is_valid_phone(mobilenum):
-        print(f"The given number:{mobilenum} is valid")
-    else:
-        print(f"The given number:{mobilenum} is invalid")
 
 
 #Testing the different login credentials using Parameterization
@@ -121,17 +108,17 @@ def test_registration_khalti(driver):
     ("9810110101","helloworld101")
 ])
 
-#RUNNING TEST FUNCTION ON KHALTI REGISTRATION PAGE
-def test_login_khalti(driver,useremail,userpassword):
-    khalti_login = LoginPageKhalti(driver)
-    khalti_login.open_page("https://web.khalti.com/?csrt=5394820902130000854#/")
+#RUNNING TEST FUNCTION ON SOCHEKO REGISTRATION PAGE
+def test_login_socheko(driver,useremail,userpassword):
+    socheko_login = LoginPageSocheko(driver)
+    socheko_login.open_page("http://www.socheko.com/login-user")
     driver.maximize_window()
     time.sleep(1)
-    khalti_login.enter_userid(useremail)
+    socheko_login.enter_userid(useremail)
     time.sleep(1)
-    khalti_login.enter_password(userpassword)
+    socheko_login.enter_password(userpassword)
     time.sleep(1)
-    khalti_login.click_login()
+    socheko_login.click_login()
     time.sleep(3)
 
 #####################################################################

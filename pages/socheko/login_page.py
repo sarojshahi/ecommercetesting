@@ -6,9 +6,9 @@ from selenium.webdriver.common.by import By
 class LoginPageSocheko:
     def __init__(self,driver):
         self.driver = driver
-        self.userid_field = By.XPATH,"//input[@name='id']"
-        self.password_field = By.XPATH,"//input[@name='password']"
-        self.login_button = By.XPATH,"//button[normalize-space()='Login']"
+        self.userid_field = By.XPATH,"//input[@id='username']"
+        self.password_field = By.XPATH,"//input[@id='Password']"
+        self.login_button = By.XPATH,"//button[@class='text-white py-2 px-4 mt-4 w-full btn btn-waft']"
 
     def open_page(self,url):
         self.driver.get(url)
