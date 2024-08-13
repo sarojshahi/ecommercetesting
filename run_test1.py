@@ -8,7 +8,8 @@ import time
 #IMPORT THE CLASSES FROM THE PAGES
 from pages.Muncha.registration_page import RegistrationPageMuncha
 from pages.Muncha.login_page import LoginPageMuncha
-from pages.socheko.login_page import LoginPageSocheko
+from pages.saltnepal.login_page import LoginPageSalt
+from pages.saltnepal.registration_page import RegistrationPageSalt
 from pages.goldstar.registration_page import RegistrationPageGoldstar
 from pages.goldstar.login_page import  LoginPageGoldstar
 
@@ -134,26 +135,26 @@ def test_login_muncha(driver, useremail,userpassword):
 
 ####################################################################
 
-#RUNNING TEST FUNCTION ON SOCHEKO REGISTRATION PAGE
-def test_registration_socheko(driver):
+#RUNNING TEST FUNCTION ON SOCHEKO REGISTRATION PAGE OF SALT NEPAL
+def test_registration_salt(driver):
     email = "johndoe@gmail.com"
-    socheko_registration = RegistrationPageSocheko(driver)
-    socheko_registration.open_page("http://www.socheko.com/signup-user")
+    salt_registration = RegistrationPageSalt(driver)
+    salt_registration.open_page("https://saltnp.com/account/register")
     driver.maximize_window()
     time.sleep(1)
-    socheko_registration.enter_email(email)
+    salt_registration.enter_first_name("John")
     time.sleep(1)
-    socheko_registration.enter_name("John Doe")
+    salt_registration.enter_last_name("Doe")
     time.sleep(1)
-    socheko_registration.enter_password("Nepali@123")
+    salt_registration.enter_email(email)
     time.sleep(1)
-    socheko_registration.enter_confirm_password("Nepali@123")
+    salt_registration.enter_password("Nepali@123")
     time.sleep(1)
-    socheko_registration.click_register()
+    salt_registration.click_create()
     time.sleep(1)
 
     # check the validity of the email
-    if socheko_registration.is_valid_email(email):
+    if salt_registration.is_valid_email(email):
         print(f"The given email: {email} is valid")
     else:
         print(f"The given email: {email} is invalid")
@@ -161,22 +162,23 @@ def test_registration_socheko(driver):
 
 #Testing the different login credentials using Parameterization
 @pytest.mark.parametrize("useremail,userpassword",[
-    ("andromedanp.hq@gmail.com","Tumblr@123"),
-    ("ram@gmail.com","abc123"),
-    ("9810110101","helloworld101")
+    ("johndoe@gmail.com","Nepali@123"),
+    ("johndoe@gmail.com","invalid@123"),
+    ("johndai@gmail.com","Nepali@123"),
+    ("","")
 ])
 
 #RUNNING TEST FUNCTION ON SOCHEKO REGISTRATION PAGE
-def test_login_socheko(driver,useremail,userpassword):
-    socheko_login = LoginPageSocheko(driver)
-    socheko_login.open_page("http://www.socheko.com/login-user")
+def test_login_salt(driver,useremail,userpassword):
+    salt_login = LoginPageSalt(driver)
+    salt_login.open_page("https://saltnp.com/account/login")
     driver.maximize_window()
     time.sleep(1)
-    socheko_login.enter_userid(useremail)
+    salt_login.enter_useremail(useremail)
     time.sleep(1)
-    socheko_login.enter_password(userpassword)
+    salt_login.enter_password(userpassword)
     time.sleep(1)
-    socheko_login.click_login()
+    salt_login.click_signin()
     time.sleep(3)
 
 #####################################################################
