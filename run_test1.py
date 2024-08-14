@@ -26,9 +26,9 @@ def driver():
 
 
 
-#RUNNING TEST FUNCTION ON HAMROBAZAR REGISTRATION PAGE
+#RUNNING TEST FUNCTION ON GOLDSTAR REGISTRATION PAGE
 def test_registration_goldstar(driver):
-    email = "johndoe01@gmail.com"
+    email = "johndoe#gmail.com"
     goldstar_registration = RegistrationPageGoldstar(driver)
     goldstar_registration.open_page("https://www.goldstarshoes.com/register")
     driver.maximize_window()
@@ -73,11 +73,11 @@ def test_login_goldstar(driver, useremail,userpassword):
     time.sleep(3)
 
 
-#RUNNING TEST FUNCTION ON OLIZ REGISTRATION PAGE
+#RUNNING TEST FUNCTION ON MUNCHA REGISTRATION PAGE
 
 def test_registration_muncha(driver):
-    email = "johndoe@gmail.com"
-    phone = "9810120230"
+    email = "johndoe#gmail.com"
+    phone = "9867546"
     muncha_registration = RegistrationPageMuncha(driver)
     muncha_registration.open_page("https://www.muncha.com/AP/Register")
     driver.maximize_window()
@@ -98,6 +98,7 @@ def test_registration_muncha(driver):
     time.sleep(1)
     # muncha_registration.click_signup()
     # time.sleep(3)
+
     # check the validity of the email
     if muncha_registration.is_valid_email(email):
         print(f"The given email: {email} is valid")
@@ -119,7 +120,7 @@ def test_registration_muncha(driver):
     ("","")
 ])
 
-#RUNNING TEST FUNCTION ON OLIZ LOGIN PAGE
+#RUNNING TEST FUNCTION ON MUNCHA LOGIN PAGE
 def test_login_muncha(driver, useremail,userpassword):
     muncha_login = LoginPageMuncha(driver)
     muncha_login.open_page("https://www.muncha.com/ap/login")
@@ -135,9 +136,9 @@ def test_login_muncha(driver, useremail,userpassword):
 
 ####################################################################
 
-#RUNNING TEST FUNCTION ON SOCHEKO REGISTRATION PAGE OF SALT NEPAL
+#RUNNING TEST FUNCTION ON REGISTRATION PAGE OF SALT NEPAL
 def test_registration_salt(driver):
-    email = "johndoe@gmail.com"
+    email = "johndoe#gmail.com"
     salt_registration = RegistrationPageSalt(driver)
     salt_registration.open_page("https://saltnp.com/account/register")
     driver.maximize_window()
@@ -150,8 +151,8 @@ def test_registration_salt(driver):
     time.sleep(1)
     salt_registration.enter_password("Nepali@123")
     time.sleep(1)
-    salt_registration.click_create()
-    time.sleep(1)
+    # salt_registration.click_create()
+    # time.sleep(5)
 
     # check the validity of the email
     if salt_registration.is_valid_email(email):
@@ -181,4 +182,19 @@ def test_login_salt(driver,useremail,userpassword):
     salt_login.click_signin()
     time.sleep(3)
 
+    # check if the username or password is incorrect
+    try:
+        alert = driver.switch_to.alert
+        alert_text = alert.text
+        assert "Invalid username or password" in alert_text
+        print(f"Invalid username or password for {useremail}")
+
+        # check if the username and password is correct
+    except:
+        time.sleep(2)
+        page_source = driver.page_source
+        if "Welcome to the Dashboard" in page_source:
+            print(f"Valid Username or Password for user: {useremail}")
+        else:
+            print("Unexpected Error!! Please try again later!")
 #####################################################################
